@@ -31,13 +31,13 @@ class ResidualBlock(nn.Module):
         return out
 
 class CNN_Block(nn.Module):
-    def __init__(self):
+    def __init__(self, dropout_prob=0.3):
         super(CNN_Block, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1)
         self.residual_block1 = ResidualBlock(64, 64)
         self.residual_block2 = ResidualBlock(64, 128, stride=2)
         self.fc1 = nn.Linear(128 * 32 * 32, 512)
-        self.dropout = nn.Dropout(0.5)
+        self.dropout = nn.Dropout(dropout_prob)
         self.fc2 = nn.Linear(512, 256)
         self.fc3 = nn.Linear(256, 128)
         self.fc4 = nn.Linear(128, 64)
@@ -56,7 +56,6 @@ class CNN_Block(nn.Module):
         x = F.relu(self.fc4(x))
         x = F.relu(self.fc5(x))
         x = self.output(x)
-        x = F.softmax(x, dim=1)
         return x
 
 
@@ -65,7 +64,8 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)
-        self.fc1 = nn.Linear(128 * 227 * 227, 512)
+        self.fc1 = nn.Linear(128 * 32 * 32, 512)
+        self.dropout = nn.Dropout(0.5)
         self.fc2 = nn.Linear(512, 256)
         self.fc3 = nn.Linear(256, 128)
         self.fc4 = nn.Linear(128, 64)
@@ -75,20 +75,19 @@ class CNN(nn.Module):
     def forward(self, x):
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
-        x = x.view(-1, 128 * 227 * 227)
+        x = x.view(-1, 128 * 32 * 32)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = F.relu(self.fc3(x))
         x = F.relu(self.fc4(x))
         x = F.relu(self.fc5(x))
         x = self.output(x)
-        x = F.softmax(x, dim=1)
         return x
 
 class DNN(nn.Module):
     def __init__(self):
         super(DNN, self).__init__()
-        self.fc1 = nn.Linear(128 * 227 * 227, 512)
+        self.fc1 = nn.Linear(128 * 64 * 64, 512)
         self.fc2 = nn.Linear(512, 256)
         self.fc3 = nn.Linear(256, 128)
         self.fc4 = nn.Linear(128, 64)
@@ -96,12 +95,11 @@ class DNN(nn.Module):
         self.output = nn.Linear(32, 7)
 
     def forward(self, x):
-        x = x.view(-1, 128 * 227 * 227)
+        x = x.view(-1, 128 * 64 * 64)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = F.relu(self.fc3(x))
         x = F.relu(self.fc4(x))
         x = F.relu(self.fc5(x))
         x = self.output(x)
-        x = F.softmax(x, dim=1)
         return x

@@ -59,10 +59,10 @@ def create_noise(create_file_num, file_path):
         cnt += 1
 
 # 각원본 개수만큼 진행
-create_noise(329, '/content/drive/MyDrive/train/dog/')
-create_noise(205, '/content/drive/MyDrive/train/elephant/')
-create_noise(235, '/content/drive/MyDrive/train/giraffe/')
-create_noise(134, '/content/drive/MyDrive/train/guitar/')
-create_noise(151, '/content/drive/MyDrive/train/horse/')
-create_noise(245, '/content/drive/MyDrive/train/house/')
-create_noise(399, '/content/drive/MyDrive/train/person/')
+create_noise(329, 'train/dog/')
+create_noise(205, 'train/elephant/')
+create_noise(235, 'train/giraffe/')
+create_noise(134, 'train/guitar/')
+create_noise(151, 'train/horse/')
+create_noise(245, 'train/house/')
+create_noise(399, 'train/person/')
