@@ -20,7 +20,7 @@ def main():
   np.random.seed(random_seed)
   random.seed(random_seed)
 
-  config = load_config('config.json')
+  config = load_config('../config.json')
   device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
   print(device)
 
@@ -34,7 +34,7 @@ def main():
   valid_transforms = A.Compose([
     A.Normalize()
   ])
-  data_lists, data_labels = img_gather("train")
+  data_lists, data_labels = img_gather("../train")
 
   best_models = []
   k_fold_num = config['k_fold_num']

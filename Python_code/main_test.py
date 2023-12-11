@@ -17,7 +17,7 @@ import main
 
 def main_test():
   random_seed()
-  config = load_config('config.json')
+  config = load_config('../config.json')
   device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
   print(device)
 
@@ -25,7 +25,7 @@ def main_test():
     A.Normalize()
   ])
 
-  test_files = os.listdir("test/test_image")
+  test_files = os.listdir("../test/test_image")
   test_files = sorted(test_files)
   test_files = list(map(lambda x: "/".join(["test/test_image", x]), test_files))
 
@@ -64,7 +64,7 @@ def main_test():
       break
     i += 1
 
-  submission = pd.read_csv("test_answer_sample_.csv", index_col=False)
+  submission = pd.read_csv("../test_answer_sample_.csv", index_col=False)
   submission["answer value"] = answer_value
   submission["answer value"].to_csv(submission_path)
   print("\nAll done.")

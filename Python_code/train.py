@@ -10,7 +10,7 @@ from config import load_config
 
 def train(data_loader):
 
-  config = load_config('config.json')
+  config = load_config('../config.json')
   device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
   model = timm.create_model(model_name=config['model_name'], pretrained=True, num_classes=7).to(device)
