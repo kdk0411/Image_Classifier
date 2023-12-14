@@ -13,9 +13,10 @@
   
   ![horse](https://github.com/kdk0411/Image_Classifier/assets/99461483/79e78dd9-b03d-41b6-95dd-6ae8b8fc4708)
 
-<h1>MFCC</h1>
-
-
+<h1>Albumentations</h1>
+  Albumentations은 부족한 데이터셋을 증강하기 위한 라이브러리입니다.
+  회전, 반전 등의 방법을 사용하여 증강합니다.
+  이 프로젝트에서는 회전, 상하반전, 특정 색상 부여 이렇게 3가지를 적용하였습니다.
 
 ## 결과 및 보고
 
